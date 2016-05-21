@@ -9,6 +9,11 @@ from fruit.types import *
 
 
 class Node(Drawable, EventHandler):
+	"""
+	Base node class, subclass it to make custom graphic objects for your
+	application.
+	"""
+
 	def __init__(self, pos=Vec(0, 0), size=Size(0, 0), layer=1, visible=True):
 		self.rect = Rect(pos, size)
 		self.layer = layer
@@ -16,6 +21,10 @@ class Node(Drawable, EventHandler):
 		self.visible = visible
 
 	def children_recursive(self):
+		"""
+		Yields every children or the instance, recursively.
+		"""
+
 		for child in self.children:
 			yield from child.children_recursive()
 
@@ -34,6 +43,3 @@ class Node(Drawable, EventHandler):
 	@size.setter
 	def size(self, value):
 		self.rect.size = value
-
-	def update(self, dt):
-		pass

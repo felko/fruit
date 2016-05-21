@@ -5,6 +5,10 @@ from fruit.mixin.meta import MixinMeta
 
 
 class RegisterMeta(MixinMeta):
+	"""
+	Registers every instance of a class.
+	"""
+
 	def __new__(mcs, name, bases, attrs):
 		attrs['__instances__'] = []
 
@@ -31,9 +35,17 @@ class RegisterMeta(MixinMeta):
 		return cls
 
 	def register(cls, instance):
+		"""
+		Register a new instance.
+		"""
+
 		cls.__instances__.append(instance)
 
 	def instances(cls):
+		"""
+		Yields every instance of the class and the ones of its subclasses.
+		"""
+
 		yield from cls.__instances__
 
 		for subcls in cls.__subclasses__():
@@ -41,4 +53,7 @@ class RegisterMeta(MixinMeta):
 
 
 class Register(metaclass=RegisterMeta):
-	pass
+	"""
+	Base class for registering instances, subclass it rather than declaring
+	explicitly te metaclass as RegisterMeta (unless you know what you're doing).
+	"""

@@ -21,6 +21,10 @@ from fruit.types import Vec
 
 
 class KeyPress(KeyboardEvent):
+	"""
+	Posted when the user pressed a key.
+	"""
+
 	def __init__(self, key):
 		self.key = key
 
@@ -45,6 +49,10 @@ class KeyPress(KeyboardEvent):
 
 
 class Arrow(KeyPress, Enum):
+	"""
+	Posted when the users presses an arrow.
+	"""
+
 	def __init__(self, key, rel):
 		KeyPress.__init__(self, key)
 		self.rel = Vec(*rel)
@@ -68,6 +76,10 @@ class Arrow(KeyPress, Enum):
 
 
 class KeyRelease(KeyboardEvent):
+	"""
+	Posted when a key is released.
+	"""
+
 	def __init__(self, key):
 		self.key = key
 
@@ -92,6 +104,10 @@ class KeyRelease(KeyboardEvent):
 
 
 class IsPressed(KeyboardEvent):
+	"""
+	Posted every frame as long as the key is pressed.
+	"""
+
 	def __init__(self, key):
 		self.key = key
 

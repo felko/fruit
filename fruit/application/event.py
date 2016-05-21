@@ -23,5 +23,9 @@ class QuitApp(AppEvent):
 
 
 class Update(AppEvent):
+	"""
+	Posted every frame by the root application.
+	"""
+
 	def __init__(self, dt):
 		self.dt = dt

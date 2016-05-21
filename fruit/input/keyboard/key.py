@@ -8,6 +8,10 @@ from fruit.input.keyboard.event import KeySequence
 
 
 class Key(Enum):
+	"""
+	A key from a standard keyboard.
+	"""
+
 	def __add__(self, key):
 		return KeySequence(self, key)
 

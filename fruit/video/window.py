@@ -13,6 +13,10 @@ DEFAULT_ICON_PATH = os.path.join(os.sep.join(__file__.split(os.sep)[:-2]), 'defa
 
 
 class Window:
+	"""
+	A singleton object that wraps the screen.
+	"""
+
 	def __init__(self, surface):
 		self.surface = surface
 		self.title = "Fruit window"
@@ -21,6 +25,10 @@ class Window:
 
 	@classmethod
 	def create(cls, size, resizable=True):
+		"""
+		Instantiate the window at a given size.
+		"""
+
 		surface = Surface(size)
 
 		flag = 0
@@ -54,4 +62,8 @@ class Window:
 		pygame.display.set_icon(value._surface)
 
 	def clear(self):
+		"""
+		Fills the screen with the window's default color.
+		"""
+
 		self.surface.fill(self.default_color)

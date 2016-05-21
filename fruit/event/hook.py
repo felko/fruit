@@ -3,6 +3,10 @@
 
 
 class EventHook:
+	"""
+	Represent a single event hook, used for metaclass tricks.
+	"""
+
 	def __init__(self, callback, event_or_types, priority=1):
 		self.callback = callback
 		self.event_or_types = event_or_types
@@ -13,6 +17,10 @@ class EventHook:
 
 	@classmethod
 	def on(cls, *event_or_types):
+		"""
+		Decorator that registers a hook.
+		"""
+
 		def _wrapper(fn):
 			return EventHook(fn, event_or_types)
 		return _wrapper

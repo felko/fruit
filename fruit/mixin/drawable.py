@@ -3,6 +3,10 @@
 
 
 class Drawable:
+	"""
+	Base class for drawable objects.
+	"""
+
 	def draw(self):
 		"""
 		Returns a Surface object.

@@ -7,6 +7,10 @@ from fruit.helper import property_alias
 
 
 class Color:
+	"""
+	Represents an RGBA color.
+	"""
+
 	def __init__(self, *args):
 		if len(args) == 1:
 			hexcode, *_ = args

@@ -7,4 +7,7 @@ from fruit.types import Rect
 
 
 class Entity(Node):
-	pass
+	"""
+	Base entity node.
+	Subclass it to declare custom game objects.
+	"""

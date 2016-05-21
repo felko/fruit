@@ -7,4 +7,5 @@ from fruit.event import EventHandler
 class Controller(EventHandler):
 	"""
 	Base class for controllers.
+	Note: controllers are meant to be singleton classes.
 	"""

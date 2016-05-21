@@ -3,4 +3,6 @@
 
 
 class MixinMeta(type):
-	pass
+	"""
+	Abstract mixin metaclass.
+	"""

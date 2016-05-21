@@ -6,6 +6,10 @@ from fruit.video.surface import Surface
 
 
 class Rectangle(Shape):
+	"""
+	A rectangle in 2D space.
+	"""
+
 	def __init__(self, size, color):
 		super().__init__(color)
 		self.size = size

@@ -7,6 +7,10 @@ from fruit.types import Rect, Vec
 
 
 class Scene:
+	"""
+	Represents a set of nodes on a window.
+	"""
+
 	def __init__(self, size, *nodes):
 		self.nodes = set(nodes)
 		self.view = View(Rect((0, 0), size), zoom=1)
@@ -32,6 +36,10 @@ class Scene:
 
 
 def _draw_node(surface, node, view, parent=None):
+	"""
+	Draws a node and its children recursively.
+	"""
+
 	if node.visible:
 		surf = node.draw()
 

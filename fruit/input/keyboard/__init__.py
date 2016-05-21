@@ -11,6 +11,10 @@ from fruit.event import EventHook, EventHandler
 
 
 class Keyboard(Controller):
+	"""
+	Controller for the keyboard, handles pygame keyboard events.
+	"""
+
 	def __init__(self):
 		self.pressed_keys = defaultdict(lambda: 0)
 		self.repeat_delay = None

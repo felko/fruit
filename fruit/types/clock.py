@@ -5,6 +5,10 @@ import pygame
 
 
 class Clock:
+	"""
+	Handles time delta.
+	"""
+
 	def __init__(self):
 		self._clock = pygame.time.Clock()
 

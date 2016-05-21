@@ -10,6 +10,10 @@ from fruit.event.hook import EventHook
 
 
 class EventHandlerMeta(RegisterMeta):
+	"""
+	Metaclass that implements instance-level event handling.
+	"""
+
 	def __new__(mcs, name, bases, attrs):
 		attrs['__hooks__'] = defaultdict(list)
 		attrs['queue'] = []
@@ -22,6 +26,10 @@ class EventHandlerMeta(RegisterMeta):
 					priority=attr.priority)(attr.callback)
 
 	def hooks(cls):
+		"""
+		Returns a dictionary of the hooks of the class and its base classes.
+		"""
+
 		hooks = cls.__hooks__.copy()
 
 		for supcls in cls.__bases__:
@@ -35,6 +43,10 @@ class EventHandlerMeta(RegisterMeta):
 		return hooks
 
 	def post(cls, *events):
+		"""
+		Adds events to the event queue.
+		"""
+
 		for event in events:
 			if isinstance(event, Event):
 				cls.queue.append(event)
@@ -42,6 +54,10 @@ class EventHandlerMeta(RegisterMeta):
 				cls.queue.extend(Event.get_event_queue(event))
 
 	def run(cls):
+		"""
+		Run all the events hooks in the queue.
+		"""
+
 		hook_queue = []
 
 		for instance in cls.instances():
@@ -72,6 +88,10 @@ class EventHandlerMeta(RegisterMeta):
 		cls.queue.clear()
 
 	def on(cls, *event_or_types, priority=1):
+		"""
+		Decorator that registers a hook.
+		"""
+
 		def _wrapper(hook):
 			for event_or_type in event_or_types:
 				index = min(priority, len(cls.__hooks__)) - 1
@@ -81,4 +101,8 @@ class EventHandlerMeta(RegisterMeta):
 
 
 class EventHandler(metaclass=EventHandlerMeta):
-	pass
+	"""
+	Base class for event handling classes, use this rather than declaring
+	explicitly EventHandlerMeta as the metaclass (unless you know what you're
+	doing).
+	"""

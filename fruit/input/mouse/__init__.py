@@ -12,6 +12,12 @@ from fruit.event import EventHook, EventHandler
 
 
 class Mouse(Controller):
+	"""
+	Controller for the mouse.
+	Handles pygame mouse events, including movement, clicking and scrolling.
+	Cursor position, visibility and texture can be set from this class.
+	"""
+
 	def __init__(self):
 		self.button_pressed = defaultdict(lambda: 0)
 		self.visible = True
