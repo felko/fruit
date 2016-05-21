@@ -13,15 +13,12 @@ class Game(Application):
 		self.level = Level(self.player, (16, 16))
 		scene = Scene((800, 600), self.level)
 		super().__init__(scene, window)
+		self.keyboard.repeat_delay = 1
+		self.keyboard.repeat_interval = 0.001
 
 	@EventHook.on(Update)
 	def update(self, update):
 		print(self.player.pos)
-
-	@EventHook.on(KeyPress(Key.SPACE))
-	def toggle_repeat(self, event):
-		self.keyboard.repeat_delay = 1
-		self.keyboard.repeat_interval = 0.001
 
 
 class Level(Node):
@@ -30,11 +27,10 @@ class Level(Node):
 		self.children.add(player)
 		self.player = player
 
-	#@EventHook.on(*(IsPressed(arr) for arr in Arrow))
-	@EventHook.on(IsPressed(Key.UP), IsPressed(Key.DOWN), IsPressed(Key.LEFT), IsPressed(Key.RIGHT))
-	def move(self, press):
+	@EventHook.on(Arrow)
+	def move(self, arrow):
 		newpos = self.player.pos.copy()
-		newpos += press.key.rel * self.player.speed
+		newpos += arrow.rel * self.player.speed
 
 		if Rect(newpos, self.player.size) in self.rect:
 			self.player.pos = newpos
