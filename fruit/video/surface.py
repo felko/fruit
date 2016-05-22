@@ -46,7 +46,7 @@ class Surface(Drawable):
 
 	@size.setter
 	def size(self, value):
-		self._surface.set_size(value)
+		self._surface = pygame.Surface(tuple(value))
 
 	def paste(self, drawable, pos):
 		"""

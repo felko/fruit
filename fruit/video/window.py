@@ -12,7 +12,7 @@ from fruit.event import *
 DEFAULT_ICON_PATH = os.path.join(os.sep.join(__file__.split(os.sep)[:-2]), 'default_icon.png')
 
 
-class Window:
+class Window(EventHandler):
 	"""
 	A singleton object that wraps the screen.
 	"""
